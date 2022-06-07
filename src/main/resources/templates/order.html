@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Нарачка</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .back{
+            background-color: #f6f6f6;
+        }
+        .head{
+            background-color: white;
+        }
+
+        svg{
+            opacity: 50%;
+        }
+        #links a{
+            margin-right: 10px;
+        }
+        #padd{
+            padding-top: 0px;
+        }
+
+        #contenth3 h3{
+            color: black;
+        }
+        #content h1{
+            color: black;
+        }
+    </style>
+</head>
+<body class="back">
+
+<!--    fixed-top if you want to stay sticky-ish on top-->
+<nav class="navbar navbar-expand-lg navbar-light border-bottom head">
+    <div class="container">
+        <img class="logo" id="logo" src="/static/images/b84e2cd958f04312b489ea37b6a0420c.png" th:src="@{images/b84e2cd958f04312b489ea37b6a0420c.png}" width="90px" height="90px">
+        <a class="navbar-brand" href="/home">Мое Карго</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Дома</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/newOrders">Нарачки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addNewOrders">Нови Нарачки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/financials">Откупи</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="navbar-nav ms-auto d-flex justify-content-end align-items-center">
+            <li class="nav-item">
+                <a class="nav-link" th:text="'Здраво '+${username}"></a>
+            </li>
+            <a class="nav-link" href="myProfile"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg></a>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="content-wrapper" style="min-height: 562px;">
+
+    <div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <nav class="navbar navbar-expand navbar-white navbar-light">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab">Информации за Нарачката</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="details">
+                                <div class="row">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card card-primary">
+                                            <div class="card-body box-profile" id="content">
+                                                <h3 class="profile-username text-center">Нарачка</h3>
+                                                <p class="text-center"></p>
+
+                                                <ul class="list-group list-group-unbordered">
+                                                    <li class="list-group-item">
+                                                        <b>Плаќање</b>
+                                                        <a class="float-right" th:text="${order.getPays()}==RECEIVER ? 'Испраќач' : 'Примач' ">
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Поштарина</b> <a class="float-right">130 МКД</a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Откуп</b>
+                                                        <a class="float-right" th:text="${order.getPrice()}">
+
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Вкупно</b> <a class="float-right" th:text="${order.getPrice()} + 130.0"></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card card-primary">
+                                            <div class="card-body box-profile">
+                                                <h3 class="profile-username text-center">Испраќач</h3>
+                                                <p class="text-center"></p>
+
+                                                <ul class="list-group list-group-unbordered">
+                                                    <li class="list-group-item">
+                                                        <b>Име</b> <a class="float-right" th:text="${order.getSender().getFullName()}"></a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Телефонски Број</b> <a class="float-right" href="tel:+38900000000" th:text="${order.getSender().getPhoneNumber()}"></a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Град</b> <a class="float-right" th:text="${order.getSender().getCity()}">
+                                                    </a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Улица</b> <a class="float-right" th:text="${order.getSender().getStreetName()}">
+
+                                                        /</a>
+                                                    </li>
+
+
+                                                    <li class="list-group-item">
+                                                        <b>Да Плати</b> <a class="float-right" th:text="${order.getPays()}==RECEIVER ? 130 : 0 "></a>
+                                                    </li>
+
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card card-primary">
+                                            <div class="card-body box-profile">
+                                                <h3 class="profile-username text-center">Примач</h3>
+                                                <p class="text-center"></p>
+
+                                                <ul class="list-group list-group-unbordered">
+                                                    <li class="list-group-item">
+                                                        <b>Име</b> <a class="float-right" th:text="${order.getReceiver().getFullName()}"></a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Телефонски Број</b> <a class="float-right" href="tel:+38978324625" th:text="${order.getReceiver().getPhoneNumber()}">+</a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Град</b> <a class="float-right" th:text="${order.getReceiver().getCity()}">
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <b>Улица</b> <a class="float-right" th:text="${order.getReceiver().getStreetName()}">
+
+                                                        </a>
+                                                    </li>
+
+
+                                                    <li class="list-group-item">
+                                                        <b>Да Плати</b> <a class="float-right"th:text="${order.getPays()}==RECEIVER ? 0 + ${order.getPrice()} : 130 + ${order.getPrice()} +' МКД'"> </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card card-primary">
+                                            <div class="card-body box-profile">
+                                                <h3 class="profile-username text-center">
+                                                    Статус
+                                                </h3>
+                                                <hr class="___class_+?116___">
+                                                <p class="text-center">
+                                                    <a th:text="${order.getOrderStatus()}"></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

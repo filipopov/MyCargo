@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Откуп</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .back{
+            background-color: #f6f6f6;
+        }
+        .head{
+            background-color: white;
+        }
+        .bar{
+            border-radius: 3%;
+        }
+        #linkStyle a, p, h3{
+            color: white;
+            text-decoration: none;
+        }
+        svg{
+            opacity: 50%;
+        }
+        #links a{
+            margin-right: 10px;
+        }
+        #padd{
+            padding-top: 0px;
+        }
+        td{
+            color: white;
+        }
+        #contenth3 h3{
+            color: black;
+        }
+        span{
+            height: fit-content;
+        }
+        #flexxx{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="back">
+<nav class="navbar navbar-expand-lg navbar-light border-bottom head">
+    <div class="container">
+        <img class="logo" id="logo" src="/static/images/b84e2cd958f04312b489ea37b6a0420c.png" th:src="@{images/b84e2cd958f04312b489ea37b6a0420c.png}" width="90px" height="90px">
+        <a class="navbar-brand" href="/home">Мое Карго</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Дома</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/newOrders">Нарачки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addNewOrders">Нови Нарачки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/financials">Откупи</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="navbar-nav ms-auto d-flex justify-content-end align-items-center">
+            <li class="nav-item">
+                <a class="nav-link" th:text="'Здраво '+${username}"></a>
+            </li>
+            <a class="nav-link" href="myProfile"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg></a>
+        </ul>
+    </div>
+</nav>
+    <br>
+    <br>
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-sm-6 col-md-3 m-2 bg-white d-flex justify-content-start align-items-center">
+            <div class="d-flex justify-content-start align-items-center m-3">
+                <div class="m-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                      <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+                      <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+                      <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+                    </svg>
+                </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">Откуп од активни нарачки: </span>
+                    <span class="info-box-number" th:text="${money.get(0)}"> ден.</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12 col-sm-6 col-md-3 m-2 bg-white d-flex justify-content-start align-items-center">
+            <div class="d-flex justify-content-start align-items-center m-3">
+                <div class="m-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                    </svg>
+                </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">Откуп во карго: </span>
+                    <span class="info-box-number" th:text="${money.get(1)}"> ден.</span>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
